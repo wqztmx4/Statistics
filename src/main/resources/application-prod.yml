@@ -1,0 +1,20 @@
+server:
+  port: 8080
+  
+  servlet:
+    context-path: /Statistics
+    
+spring:
+  datasource:
+    username: root
+    password: Wz164325
+    url: jdbc:mysql://172.17.0.11:3306/workday?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    
+mybatis:
+  mapper-locations:
+  - classpath:mapping/*Mapper.xml
+  type-aliases-package: com.jsl.Statistics.entities
+  
+
+debug: false

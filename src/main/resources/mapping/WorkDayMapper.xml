@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jsl.Statistics.mapper.WorkDayMapper">
+
+    
+    <insert id="insertDateAllYear">
+    	insert into date(workdate,week_day,isHoliday) VALUES
+    	<foreach collection="list" item = "workDay" separator=",">
+    	(#{workDay.workdate},#{workDay.week_day},#{workDay.isHoliday})
+    	</foreach>
+    </insert>
+ 
+ 	<delete id="deleteDateAllYear" >
+ 		delete from date
+ 	</delete>
+ 	
+ 	<update id="changeWeekendStatus">
+ 		update Date set isHoliday = 1 where weekday = 6 or weekday = 7
+ 	</update>
+ 	
+ 	<select id="calcWorkDay" resultType="int">
+ 		select count(*) as count from date where workdate> #{startDate} and workdate&lt;=#{endDate}  and isHoliday!=1
+ 	</select>
+ 	
+ 	<select id="afterWorkDay" resultType="com.jsl.Statistics.entities.WorkDay">
+ 		call PROC_WORKDAY_AFTER(#{startDate},#{distance})
+ 	</select>
+ 	
+ 	 <select id="beforeWorkDay" resultType="com.jsl.Statistics.entities.WorkDay">
+ 		call PROC_WORKDAY_BEFORE(#{startDate},#{distance})
+ 	</select>
+ 	
+ 
+ 
+</mapper>
