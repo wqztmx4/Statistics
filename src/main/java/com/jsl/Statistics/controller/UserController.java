@@ -49,11 +49,7 @@ public class UserController {
 	public int calcWorkDay(@PathVariable String startDate, @PathVariable String endDate) {
 		return workDayUtil.calcWorkDay(startDate, endDate);
 	}
-	
-	
-	
-	
-	
+
 	/*
 	 * @RequestMapping("removeWorkDate")
 	 * 
